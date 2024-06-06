@@ -1,0 +1,11 @@
+{
+  "dictionaries": ["npm"],
+  "dictionaryDefinitions": [
+    {
+      "name": "npm",
+      "addWords": true,
+      "path": "https://raw.githubusercontent.com/streetsidesoftware/cspell-dicts/main/dictionaries/npm/dict/npm.txt"
+    }
+  ],
+  "words": ["Pomodoro", "remeda", "unplugin", "valibot"]
+}
