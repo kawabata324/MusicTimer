@@ -6,12 +6,13 @@
     "dev:server": "turbo dev --filter=./apps/server",
     "test:unit": "turbo run test:unit",
     "lint": "turbo lint",
-    "check:types": "turbo check:types",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "turbo format",
+    "check:types": "turbo check:types"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
+    "@repo/prettier-config": "*",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },

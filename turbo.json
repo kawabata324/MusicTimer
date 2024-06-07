@@ -14,6 +14,7 @@
       "persistent": true
     },
     "test:unit": {},
-    "check:types": {}
+    "check:types": {},
+    "format": {}
   }
 }
