@@ -6,6 +6,7 @@
     "dev:server": "turbo dev --filter=./apps/server",
     "test:unit": "turbo run test:unit",
     "lint": "turbo lint",
+    "check:types": "turbo check:types",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
