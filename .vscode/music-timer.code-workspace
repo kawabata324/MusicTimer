@@ -4,4 +4,37 @@
     { "path": "../apps/server" },
     { "path": "../packages" },
   ],
+  "settings": {
+    "eslint.workingDirectories": [{ "mode": "auto" }],
+    // prettier を使って保存時にフォーマットが走るように
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // eslint を使って保存時に自動で修正されるように
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+    },
+    // VSCodeのサイドバーの背景色
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#111c86",
+    },
+    // Github Copilot の有効化設定
+    "github.copilot.editor.enableAutoCompletions": true,
+    "github.copilot.enable": {
+      "*": false,
+      "javascript": true,
+      "javascriptreact": true,
+      "typescript": true,
+      "typescriptreact": true,
+      "scss": true,
+      "sass": true,
+    },
+  },
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "vitest.explorer",
+      "github.copilot",
+    ],
+  },
 }

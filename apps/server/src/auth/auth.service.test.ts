@@ -1,5 +1,5 @@
 import { AuthService } from './auth.service';
-import { EnvService } from '@/utils/env/env.service';
+import { EnvService } from 'src/utils/env/env.service';
 import { describe, test, expect } from 'vitest';
 import { ConfigService } from '@nestjs/config';
 import { SpotifyAuthRedirect } from './auth.model';
