@@ -2,7 +2,6 @@
   "folders": [
     { "name": "root", "path": ".." },
     { "path": "../apps/server" },
-    { "path": "../packages/eslint-config" },
-    { "path": "../packages/typescript-config" },
+    { "path": "../packages" },
   ],
 }
