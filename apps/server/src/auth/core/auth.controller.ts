@@ -19,6 +19,7 @@ import { AuthUrlEntity } from './entity';
 @Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+  private readonly authStateKey = 'music-timer-auth.state';
 
   /**
    * ログインエンドポイント
@@ -26,10 +27,13 @@ export class AuthController {
    */
   @Get('login')
   @Redirect()
-  getDocs(@Res({ passthrough: true }) response: Response): AuthUrlEntity {
+  login(@Res({ passthrough: true }) res: Response): AuthUrlEntity {
     const authUrl = this.authService.createAuthUrl();
 
-    response.cookie('state', authUrl.state);
+    res.cookie(this.authStateKey, authUrl.state, {
+      secure: false,
+    });
+
     return authUrl;
   }
 
@@ -38,17 +42,14 @@ export class AuthController {
    * クエリパラメータとリクエストオブジェクトを受け取り、認証の結果を返す
    */
   @Get('callback')
-  callback(
-    @Query() query: CreateAuthTokenDto,
-    @Req() request: Request,
-  ): string {
+  callback(@Query() query: CreateAuthTokenDto, @Req() req: Request): string {
     if (query.error) {
       throw new BadRequestException('認証に失敗しました');
     }
-    if (query.state !== request.cookies.state) {
+    if (query.state !== req.cookies[this.authStateKey]) {
       throw new BadRequestException('stateが一致しません');
     }
 
-    return '';
+    return 'Hello, World!';
   }
 }
