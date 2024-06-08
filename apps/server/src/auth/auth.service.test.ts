@@ -1,13 +1,9 @@
 import { AuthService } from './auth.service';
-import { EnvService } from 'src/utils/env/env.service';
 import { describe, test, expect } from 'vitest';
-import { ConfigService } from '@nestjs/config';
 import { SpotifyAuthRedirect } from './auth.model';
 
 describe('AuthService', () => {
-  const configService = new ConfigService();
-  const envService = new EnvService(configService);
-  const authService = new AuthService(envService);
+  const authService = new AuthService();
 
   describe('createSpotifyAuthRedirect', () => {
     test('response_typeが正しいこと', () => {
@@ -23,7 +19,7 @@ describe('AuthService', () => {
         authService.createSpotifyAuthRedirect();
       expect(
         spotifyAuthRedirect.redirectUrl.searchParams.get('client_id'),
-      ).toBe(envService.SpotifyClientId);
+      ).toBe(process.env.SPOTIFY_CLIENT_ID);
     });
 
     test('scopeが正しいこと', () => {
@@ -39,7 +35,7 @@ describe('AuthService', () => {
         authService.createSpotifyAuthRedirect();
       expect(
         spotifyAuthRedirect.redirectUrl.searchParams.get('redirect_uri'),
-      ).toBe(`${envService.BackendUrl}/callback`);
+      ).toBe(`${process.env.APP_URL}/callback`);
     });
 
     test('stateが正しいこと', () => {
