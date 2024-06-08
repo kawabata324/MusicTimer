@@ -13,10 +13,17 @@ import { CreateAuthTokenDto } from './dto';
 import { AuthService } from './auth.service';
 import { AuthUrlEntity } from './entity';
 
+/**
+ * 認証コントローラークラス
+ */
 @Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  /**
+   * ログインエンドポイント
+   * 認証URLを生成し、レスポンスにstateをクッキーとして設定
+   */
   @Get('login')
   @Redirect()
   getDocs(@Res({ passthrough: true }) response: Response): AuthUrlEntity {
@@ -26,6 +33,10 @@ export class AuthController {
     return authUrl;
   }
 
+  /**
+   * コールバックエンドポイント
+   * クエリパラメータとリクエストオブジェクトを受け取り、認証の結果を返す
+   */
   @Get('callback')
   callback(
     @Query() query: CreateAuthTokenDto,

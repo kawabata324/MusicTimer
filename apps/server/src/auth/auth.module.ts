@@ -5,6 +5,4 @@ import { AuthService, AuthController } from './core';
   controllers: [AuthController],
   providers: [AuthService],
 })
-
-/** @public */
 export class AuthModule {}
