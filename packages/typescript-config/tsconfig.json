@@ -15,6 +15,14 @@
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "plugins": [
+      {
+        "name": "eslint-plugin-import-access"
+      },
+      {
+        "name": "next"
+      }
+    ]
   }
 }

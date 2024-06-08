@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { randomString } from 'remeda';
-import { CallbackRequestQuery, SpotifyAuthRedirect } from './auth.model';
+import { AuthUrlEntity } from './entity';
 import { APP_URL, SPOTIFY_CLIENT_ID } from 'src/constants';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class AuthService {
   private readonly baseUrl = 'https://accounts.spotify.com';
   private readonly redirectUri = `${APP_URL}/callback`;
 
-  createSpotifyAuthRedirect(): SpotifyAuthRedirect {
+  createAuthUrl(): AuthUrlEntity {
     const state = randomString(16);
     const urlParams = new URLSearchParams({
       response_type: 'code',
@@ -20,13 +20,8 @@ export class AuthService {
     });
 
     return {
-      redirectUrl: new URL(`/authorize?${urlParams.toString()}`, this.baseUrl),
+      url: new URL(`/authorize?${urlParams.toString()}`, this.baseUrl).href,
       state,
     };
-  }
-
-  createAuthToken({ state, code }: CallbackRequestQuery): string {
-    // TODO: Implement
-    return '';
   }
 }

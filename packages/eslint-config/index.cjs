@@ -6,7 +6,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint/eslint-plugin"],
+  plugins: ["@typescript-eslint/eslint-plugin", "import-access"],
   extends: [
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:prettier/recommended",
@@ -18,9 +18,21 @@ module.exports = {
   },
   ignorePatterns: [".eslintrc.js"],
   rules: {
+    /*
+     * =============== error ===============
+     */
     "@typescript-eslint/explicit-function-return-type": "error",
     "@typescript-eslint/explicit-module-boundary-types": "error",
     "@typescript-eslint/no-explicit-any": "error",
+    "import-access/jsdoc": [
+      "error",
+      {
+        defaultImportability: "package",
+      },
+    ],
+    /**
+     * =============== off ===============
+     */
     "@typescript-eslint/interface-name-prefix": "off",
   },
 };

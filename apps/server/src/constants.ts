@@ -3,14 +3,14 @@ import * as v from 'valibot';
 
 dotenv.config();
 
-export const SPOTIFY_CLIENT_ID = v.parse(
-  v.string(),
-  process.env.SPOTIFY_CLIENT_ID,
-);
+const SPOTIFY_CLIENT_ID = v.parse(v.string(), process.env.SPOTIFY_CLIENT_ID);
 
-export const SPOTIFY_CLIENT_SECRET = v.parse(
+const SPOTIFY_CLIENT_SECRET = v.parse(
   v.string(),
   process.env.SPOTIFY_CLIENT_SECRET,
 );
 
-export const APP_URL = v.parse(v.string(), process.env.APP_URL);
+const APP_URL = v.parse(v.string(), process.env.APP_URL);
+
+/** @public */
+export { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, APP_URL };

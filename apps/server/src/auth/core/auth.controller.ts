@@ -7,9 +7,11 @@ import {
   Req,
   BadRequestException,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
 import { Response, Request } from 'express';
-import { CallbackRequestQuery, LoginResponse } from './auth.model';
+
+import { CreateAuthTokenDto } from './dto';
+import { AuthService } from './auth.service';
+import { AuthUrlEntity } from './entity';
 
 @Controller()
 export class AuthController {
@@ -17,18 +19,17 @@ export class AuthController {
 
   @Get('login')
   @Redirect()
-  getDocs(@Res({ passthrough: true }) response: Response): LoginResponse {
-    const model = this.authService.createSpotifyAuthRedirect();
+  getDocs(@Res({ passthrough: true }) response: Response): AuthUrlEntity {
+    const authUrl = this.authService.createAuthUrl();
 
-    response.cookie('state', model.state);
-    return { url: model.redirectUrl.href };
+    response.cookie('state', authUrl.state);
+    return authUrl;
   }
 
   @Get('callback')
   callback(
-    @Query() query: CallbackRequestQuery,
+    @Query() query: CreateAuthTokenDto,
     @Req() request: Request,
-    @Res() response: Response,
   ): string {
     if (query.error) {
       throw new BadRequestException('認証に失敗しました');

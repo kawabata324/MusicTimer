@@ -20,13 +20,7 @@
     // Github Copilot の有効化設定
     "github.copilot.editor.enableAutoCompletions": true,
     "github.copilot.enable": {
-      "*": false,
-      "javascript": true,
-      "javascriptreact": true,
-      "typescript": true,
-      "typescriptreact": true,
-      "scss": true,
-      "sass": true,
+      "*": true,
     },
   },
   "extensions": {
