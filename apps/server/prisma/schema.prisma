@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int        @id @default(autoincrement())
+  name            String     @db.VarChar(128)
+  icon_url        String?    @db.VarChar(512)
+  country         String     @db.Char(2)
+  spotify_auth   SpotifyAuth?
+}
+
+model SpotifyAuth {
+  id              Int        @id @default(autoincrement())
+  spotify_id      String     @unique
+  subscription_type String   @db.VarChar(32)
+  user            User       @relation(fields: [user_id], references: [id])
+  user_id         Int        @unique
+}

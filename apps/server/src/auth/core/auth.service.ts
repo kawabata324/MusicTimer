@@ -1,15 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { AuthUrlEntity, UserEntity } from './entity';
-import { RegisterUserDto } from './dto';
 import SpotifyWebApi from 'spotify-web-api-node';
 import { first, isArray } from 'remeda';
+
+import { UserEntity } from 'src/_shared/core/entity';
+import { UserRepository } from 'src/_shared/core/repository';
+
+import { AuthUrlEntity } from './entity';
+import { RegisterUserDto } from './dto';
 
 /**
  * 認証サービスクラス
  */
 @Injectable()
 export class AuthService {
-  constructor() {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   /**
    * 認証URLを生成する
@@ -22,7 +26,7 @@ export class AuthService {
    * ユーザを登録する
    * 認証コードをセットし、SpotifyWebApiを生成する
    */
-  async registerUser({ code }: RegisterUserDto): Promise<string> {
+  async registerUser({ code }: RegisterUserDto): Promise<UserEntity> {
     const spotifyApi = new SpotifyWebApi({
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
@@ -37,11 +41,9 @@ export class AuthService {
       spotifySubscriptionType: body.product,
       name: body.display_name,
       country: body.country,
-      profileImageUrl: isArray(body.images)
-        ? first(body.images)?.url
-        : undefined,
+      iconUrl: isArray(body.images) ? first(body.images)?.url : undefined,
     });
 
-    return 'Hello, World!';
+    return this.userRepository.create(user);
   }
 }

@@ -6,26 +6,26 @@ export class UserEntity {
   readonly spotifySubscriptionType: string;
   readonly name: string;
   readonly country: string;
-  readonly profileImageUrl: string;
+  readonly iconUrl: string;
 
   constructor({
     spotifyId,
     spotifySubscriptionType,
     name,
     country,
-    profileImageUrl,
+    iconUrl,
   }: {
     spotifyId: string;
     spotifySubscriptionType: string;
     name?: string;
     country: string;
-    profileImageUrl?: string;
+    iconUrl?: string;
   }) {
     this.spotifyId = spotifyId;
     this.spotifySubscriptionType = spotifySubscriptionType;
     this.name = name ?? 'ゲストユーザー';
     this.country = country;
     // TODO: あとでデフォルトの画像URLを設定
-    this.profileImageUrl = profileImageUrl ?? 'https://via.placeholder.com/300';
+    this.iconUrl = iconUrl ?? 'https://via.placeholder.com/300';
   }
 }

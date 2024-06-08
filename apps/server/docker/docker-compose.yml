@@ -1,0 +1,21 @@
+services:
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0.28
+    container_name: music-timer-db
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      TZ: Asia/Tokyo
+    ports:
+      - '${MYSQL_PORT}:3306'
+    volumes:
+      # ホスト:コンテナ
+      # 初期データを投入するSQLが格納されているdir
+      - ./sql:/docker-entrypoint-initdb.d
+      # DBのデータの実体
+      - ./mysql/db:/var/lib/mysql
+      # 設定ファイル
+      - ./conf.d:/etc/mysql/conf.d

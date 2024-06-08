@@ -12,6 +12,7 @@ import { Response, Request } from 'express';
 import { RegisterUserDto } from './dto';
 import { AuthService } from './auth.service';
 import { AuthUrlEntity } from './entity';
+import { UserEntity } from 'src/_shared/core/entity';
 
 /**
  * 認証コントローラークラス
@@ -42,7 +43,10 @@ export class AuthController {
    * 認証コードを取得し、SpotifyWebApiを生成
    */
   @Get('callback')
-  callback(@Query() query: RegisterUserDto, @Req() req: Request): string {
+  async callback(
+    @Query() query: RegisterUserDto,
+    @Req() req: Request,
+  ): Promise<UserEntity> {
     if (query.error) {
       throw new BadRequestException('認証に失敗しました');
     }
@@ -50,8 +54,6 @@ export class AuthController {
       throw new BadRequestException('stateが一致しません');
     }
 
-    const a = this.authService.registerUser(query);
-
-    return 'Hello, World!';
+    return await this.authService.registerUser(query);
   }
 }
