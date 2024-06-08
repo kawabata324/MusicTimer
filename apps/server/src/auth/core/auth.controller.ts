@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { Response, Request } from 'express';
 
-import { CreateAuthTokenDto } from './dto';
+import { RegisterUserDto } from './dto';
 import { AuthService } from './auth.service';
 import { AuthUrlEntity } from './entity';
 
@@ -39,16 +39,18 @@ export class AuthController {
 
   /**
    * コールバックエンドポイント
-   * クエリパラメータとリクエストオブジェクトを受け取り、認証の結果を返す
+   * 認証コードを取得し、SpotifyWebApiを生成
    */
   @Get('callback')
-  callback(@Query() query: CreateAuthTokenDto, @Req() req: Request): string {
+  callback(@Query() query: RegisterUserDto, @Req() req: Request): string {
     if (query.error) {
       throw new BadRequestException('認証に失敗しました');
     }
     if (query.state !== req.cookies[this.authStateKey]) {
       throw new BadRequestException('stateが一致しません');
     }
+
+    const a = this.authService.registerUser(query);
 
     return 'Hello, World!';
   }

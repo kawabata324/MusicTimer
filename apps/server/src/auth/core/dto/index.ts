@@ -1,1 +1,1 @@
-export { CreateAuthTokenDto, createAuthTokenDto } from './createAuthToken.dto';
+export { registerUserDto, RegisterUserDto } from './registerUser.dto';
