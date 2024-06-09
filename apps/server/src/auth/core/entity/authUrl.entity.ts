@@ -1,6 +1,5 @@
 import { randomString } from 'remeda';
 import SpotifyWebApi from 'spotify-web-api-node';
-
 import { APP_URL, SPOTIFY_CLIENT_ID } from 'src/constants';
 
 /**

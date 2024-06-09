@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import SpotifyWebApi from 'spotify-web-api-node';
 import { first, isArray } from 'remeda';
-
+import SpotifyWebApi from 'spotify-web-api-node';
 import { UserEntity } from 'src/_shared/user';
 import { UserService } from 'src/_shared/user';
 
-import { AuthCodeGrantEntity, AuthUrlEntity } from './entity';
 import { GetAuthCodeGrantDto } from './dto';
+import { AuthCodeGrantEntity, AuthUrlEntity } from './entity';
 
 /**
  * 認証サービスクラス

@@ -10,6 +10,8 @@ module.exports = {
   extends: [
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript",
   ],
   root: true,
   env: {
@@ -30,9 +32,50 @@ module.exports = {
         defaultImportability: "package",
       },
     ],
+    "import/order": [
+      "error",
+      {
+        groups: ["builtin", "external", "internal", "parent", "sibling"],
+        pathGroups: [
+          {
+            pattern: "src/**",
+            group: "internal",
+            position: "before",
+          },
+        ],
+        alphabetize: {
+          order: "asc",
+        },
+        "newlines-between": "always",
+      },
+    ],
+    /**
+     * import文のアクセス制御に関するルールを指定する
+     * デフォルトをpackageにしてJSDocでスコープを指定する
+     * @see https://github.com/uhyo/eslint-plugin-import-access/blob/master/docs/rule-jsdoc.md
+     * @example
+     * // ----- sub/foo.ts -----
+     * /**
+     *  * /@package
+     *  * /
+     * export const fooPackageVariable = "I am package-private export";
+     *
+     * 🟢 // ----- sub/bar.ts -----
+     * import { fooPackageVariable } from "./foo";
+     * 🔴 // ----- baz.ts -----
+     * import { fooPackageVariable } from "./sub/foo";
+     */
+    "import-access/jsdoc": [
+      "error",
+      {
+        defaultImportability: "package",
+      },
+    ],
+
     /**
      * =============== off ===============
      */
     "@typescript-eslint/interface-name-prefix": "off",
+    "import/no-unresolved": "off",
   },
 };

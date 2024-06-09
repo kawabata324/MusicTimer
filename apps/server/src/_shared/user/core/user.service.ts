@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { isNonNullish } from 'remeda';
-
 import { PrismaService } from 'src/libs';
 
 import { UserEntity } from './user.entity';

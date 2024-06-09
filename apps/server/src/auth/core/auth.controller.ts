@@ -7,13 +7,13 @@ import {
   Req,
   BadRequestException,
 } from '@nestjs/common';
-import { Response, Request } from 'express';
 import { ApiTags } from '@nestjs/swagger';
+import { Response, Request } from 'express';
 
-import { GetAuthCodeGrantDto } from './dto';
-import { AuthService } from './auth.service';
-import { AuthCodeGrantEntity, AuthUrlEntity } from './entity';
 import { CallbackDoc, LoginDoc } from './auth.doc';
+import { AuthService } from './auth.service';
+import { GetAuthCodeGrantDto } from './dto';
+import { AuthCodeGrantEntity, AuthUrlEntity } from './entity';
 
 /**
  * 認証コントローラークラス

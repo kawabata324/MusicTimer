@@ -1,7 +1,8 @@
 import { BadRequestException } from '@nestjs/common';
-import { ValidationPipe } from './ValidationPipe';
-import { describe, expect, it } from 'vitest';
 import * as v from 'valibot';
+import { describe, expect, it } from 'vitest';
+
+import { ValidationPipe } from './ValidationPipe';
 
 describe('ValidationPipe', () => {
   const scheme = v.object({
