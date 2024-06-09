@@ -1,1 +1,1 @@
-export { ValidationPipe } from './ValidationPipe';
+export { ValidationPipe } from './validationPipe';
