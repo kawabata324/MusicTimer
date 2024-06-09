@@ -10,6 +10,9 @@ export class AuthUrlEntity {
   // あとで検証するためにstateを保持
   readonly state: string;
 
+  /**
+   * コンストラクタ
+   */
   constructor() {
     const state = randomString(16);
 

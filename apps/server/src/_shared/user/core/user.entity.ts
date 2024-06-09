@@ -8,6 +8,9 @@ export class UserEntity {
   readonly country: string;
   readonly iconUrl: string;
 
+  /**
+   * コンストラクタ
+   */
   constructor({
     spotifyId,
     spotifySubscriptionType,

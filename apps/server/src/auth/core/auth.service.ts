@@ -12,6 +12,9 @@ import { AuthCodeGrantEntity, AuthUrlEntity } from './entity';
  */
 @Injectable()
 export class AuthService {
+  /**
+   * コンストラクタ
+   */
   constructor(private readonly userService: UserService) {}
 
   /**

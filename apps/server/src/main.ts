@@ -4,6 +4,9 @@ import cookieParser from 'cookie-parser';
 
 import { AppModule } from './app.module';
 
+/**
+ * アプリケーションの起動
+ */
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 

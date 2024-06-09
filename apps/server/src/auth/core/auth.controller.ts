@@ -21,6 +21,9 @@ import { AuthCodeGrantEntity, AuthUrlEntity } from './entity';
 @Controller()
 @ApiTags('ユーザー認証')
 export class AuthController {
+  /**
+   * コンストラクタ
+   */
   constructor(private readonly authService: AuthService) {}
   private readonly authStateKey = 'music-timer-auth.state';
 

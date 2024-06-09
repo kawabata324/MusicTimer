@@ -4,6 +4,9 @@ import { PrismaService } from 'src/libs';
 
 import { AuthService, AuthController } from './core';
 
+/**
+ * 認証モジュール
+ */
 @Module({
   controllers: [AuthController],
   providers: [AuthService, UserService, PrismaService],

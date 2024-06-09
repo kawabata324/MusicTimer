@@ -3,6 +3,9 @@ import { PrismaService } from 'src/libs';
 
 import { UserService } from './core';
 
+/**
+ * ユーザーモジュール
+ */
 @Module({
   providers: [UserService, PrismaService],
 })

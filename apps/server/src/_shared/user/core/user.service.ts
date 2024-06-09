@@ -9,6 +9,9 @@ import { UserEntity } from './user.entity';
  */
 @Injectable()
 export class UserService {
+  /**
+   * コンストラクタ
+   */
   constructor(private prisma: PrismaService) {}
 
   /**

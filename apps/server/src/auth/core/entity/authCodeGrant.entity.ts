@@ -2,6 +2,9 @@
  * 認証コードのエンティティ
  */
 export class AuthCodeGrantEntity {
+  /**
+   * コンストラクタ
+   */
   constructor(
     private readonly data: {
       access_token: string;

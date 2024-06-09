@@ -12,6 +12,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/typescript",
+    "plugin:jsdoc/recommended-error",
   ],
   root: true,
   env: {
@@ -71,10 +72,27 @@ module.exports = {
       },
     ],
 
+    "jsdoc/require-jsdoc": [
+      "error",
+      {
+        require: {
+          ArrowFunctionExpression: true,
+          FunctionDeclaration: true,
+          FunctionExpression: true,
+          ClassDeclaration: true,
+          ClassExpression: true,
+          MethodDefinition: true,
+        },
+      },
+    ],
     /**
      * =============== off ===============
      */
     "@typescript-eslint/interface-name-prefix": "off",
     "import/no-unresolved": "off",
+    "jsdoc/require-returns": "off",
+    "jsdoc/require-param": "off",
+    "jsdoc/require-param-description": "off",
+    "jsdoc/require-param-type": "off",
   },
 };
