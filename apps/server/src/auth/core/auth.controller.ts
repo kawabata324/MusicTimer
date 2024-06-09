@@ -8,16 +8,18 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { Response, Request } from 'express';
+import { ApiTags } from '@nestjs/swagger';
 
-import { RegisterUserDto } from './dto';
+import { GetAuthCodeGrantDto } from './dto';
 import { AuthService } from './auth.service';
-import { AuthUrlEntity } from './entity';
-import { UserEntity } from 'src/_shared/core/entity';
+import { AuthCodeGrantEntity, AuthUrlEntity } from './entity';
+import { CallbackDoc, LoginDoc } from './auth.doc';
 
 /**
  * 認証コントローラークラス
  */
 @Controller()
+@ApiTags('ユーザー認証')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
   private readonly authStateKey = 'music-timer-auth.state';
@@ -28,6 +30,7 @@ export class AuthController {
    */
   @Get('login')
   @Redirect()
+  @LoginDoc()
   login(@Res({ passthrough: true }) res: Response): AuthUrlEntity {
     const authUrl = this.authService.createAuthUrl();
 
@@ -43,10 +46,11 @@ export class AuthController {
    * 認証コードを取得し、SpotifyWebApiを生成
    */
   @Get('callback')
+  @CallbackDoc()
   async callback(
-    @Query() query: RegisterUserDto,
+    @Query() query: GetAuthCodeGrantDto,
     @Req() req: Request,
-  ): Promise<UserEntity> {
+  ): Promise<AuthCodeGrantEntity> {
     if (query.error) {
       throw new BadRequestException('認証に失敗しました');
     }
@@ -54,6 +58,6 @@ export class AuthController {
       throw new BadRequestException('stateが一致しません');
     }
 
-    return await this.authService.registerUser(query);
+    return await this.authService.getAuthCodeGrant(query);
   }
 }

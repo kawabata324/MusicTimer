@@ -1,1 +1,4 @@
-export { registerUserDto, RegisterUserDto } from './registerUser.dto';
+export {
+  getAuthCodeGrantDto,
+  GetAuthCodeGrantDto,
+} from './getAuthCodeGrant.dto';

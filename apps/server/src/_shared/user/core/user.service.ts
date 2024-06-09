@@ -1,23 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { isNonNullish } from 'remeda';
-import { UserEntity } from 'src/_shared/core/entity';
+
 import { PrismaService } from 'src/libs';
+
+import { UserEntity } from './user.entity';
 
 /**
  * ユーザーリポジトリ
  */
 @Injectable()
-export class UserRepository {
-  constructor(
-    private readonly model: UserEntity,
-    private prisma: PrismaService,
-  ) {}
+export class UserService {
+  constructor(private prisma: PrismaService) {}
 
   /**
    * ユーザを作成する
    */
   async create(user: UserEntity): Promise<UserEntity> {
-    if (await this.isUserExist(user.spotifyId)) {
+    if (await this.isUserExistBySpotifyId(user.spotifyId)) {
       return user;
     }
 
@@ -41,7 +40,8 @@ export class UserRepository {
   /**
    * ユーザが存在するか
    */
-  async isUserExist(spotifyId: string): Promise<boolean> {
+  private async isUserExistBySpotifyId(spotifyId: string): Promise<boolean> {
+    // TODO: ユーザーが存在するかの判定に修正する
     const spotifyAuth = await this.prisma.spotifyAuth.findUnique({
       where: {
         spotify_id: spotifyId,
