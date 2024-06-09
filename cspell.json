@@ -1,5 +1,7 @@
 {
-  "dictionaries": ["npm"],
+  "dictionaries": [
+    "npm"
+  ],
   "dictionaryDefinitions": [
     {
       "name": "npm",
@@ -7,5 +9,11 @@
       "path": "https://raw.githubusercontent.com/streetsidesoftware/cspell-dicts/main/dictionaries/npm/dict/npm.txt"
     }
   ],
-  "words": ["remeda", "unplugin", "valibot"]
+  "words": [
+    "Importability",
+    "remeda",
+    "Turborepo",
+    "unplugin",
+    "valibot"
+  ]
 }
