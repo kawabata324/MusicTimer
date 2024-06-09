@@ -6,13 +6,15 @@ import {
   Query,
   Req,
   BadRequestException,
+  UsePipes,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Response, Request } from 'express';
+import { ValidationPipe } from 'src/libs';
 
 import { CallbackDoc, LoginDoc } from './auth.doc';
 import { AuthService } from './auth.service';
-import { GetAuthCodeGrantDto } from './dto';
+import { GetAuthCodeGrantDto, getAuthCodeGrantDto } from './dto';
 import { AuthCodeGrantEntity, AuthUrlEntity } from './entity';
 
 /**
@@ -49,6 +51,7 @@ export class AuthController {
    * 認証コードを取得し、SpotifyWebApiを生成
    */
   @Get('callback')
+  @UsePipes(new ValidationPipe(getAuthCodeGrantDto))
   @CallbackDoc()
   async callback(
     @Query() query: GetAuthCodeGrantDto,
