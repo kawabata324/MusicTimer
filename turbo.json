@@ -13,7 +13,9 @@
       "cache": false,
       "persistent": true
     },
-    "test:unit": {},
+    "test:unit": {
+      "dependsOn": ["^build"]
+    },
     "check:types": {},
     "format": {}
   }
