@@ -2,6 +2,10 @@
  * 認証コードのエンティティ
  */
 export class AuthCodeGrantEntity {
+  readonly accessToken: string;
+  readonly refreshToken: string;
+  readonly expiresIn: number;
+
   /**
    * コンストラクタ
    */
@@ -11,5 +15,9 @@ export class AuthCodeGrantEntity {
       refreshToken: string;
       expiresIn: number;
     },
-  ) {}
+  ) {
+    this.accessToken = data.accessToken;
+    this.refreshToken = data.refreshToken;
+    this.expiresIn = data.expiresIn;
+  }
 }
